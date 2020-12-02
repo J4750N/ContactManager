@@ -4,9 +4,34 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ContactManager"
+        xmlns:system="clr-namespace:System;assembly=mscorlib"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        <!--Hello Anthony-->
-    </Grid>
+    <DockPanel Margin="10">
+        <StackPanel DockPanel.Dock="Right" Margin="10, 0">
+            <StackPanel.Resources>
+                <Style TargetType="Button">
+                    <Setter Property="Margin" Value="0,0,0,5"></Setter>
+                </Style>
+            </StackPanel.Resources>
+            <TextBlock FontWeight="Bold" Margin="0,0,0,10">Contact Manager</TextBlock>
+            <Button Name="btnAdd" Click="btnAdd_Click">Add New Contact</Button>
+            <Button Name="btnView" Click="btnView_Click">View Existing Contact</Button>
+            <Button Name="btnEdit" Click="btnEdit_Click">Edit Existing Contact</Button>
+            <Button Name="btnDelete" Click="btnDelete_Click">Delete Contact</Button>
+        </StackPanel>
+
+        <Grid>
+            <ListView Margin="10" x:Name="cDataBinding">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="Contact Names" Width="120" DisplayMemberBinding="{Binding Name}">
+                        </GridViewColumn>
+                    </GridView>
+
+                </ListView.View>
+            </ListView>
+
+        </Grid>
+    </DockPanel>
 </Window>
