@@ -54,13 +54,24 @@ namespace ContactManager
         {
 
         }
+
+        private void cDataBinding_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (cDataBinding.SelectedItem != null)
+            {
+                this.Title = (cDataBinding.SelectedItem as Contact).Name;
+            }
+
+        }
+
+        private void cDataBinding_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            foreach (object o in cDataBinding.SelectedItems)
+                MessageBox.Show((o as Contact).ToString());
+
+        }
     }
 
-    public class toDoItem
-    {
-        public string Title { get; set; }
-        public int Completion { get; set; }
-    }
 
     public class Contact
     {
@@ -70,7 +81,8 @@ namespace ContactManager
 
         public override string ToString()
         {
-            return this.Name + ", " + this.Phone ;
+            string contact = "Name : " + Name + "\nPhone Number: " + Phone + "\n Email Address: " + Email ;
+            return contact;
         }
     }
 

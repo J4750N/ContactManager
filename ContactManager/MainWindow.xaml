@@ -21,17 +21,19 @@
             <Button Name="btnDelete" Click="btnDelete_Click">Delete Contact</Button>
         </StackPanel>
 
-        <Grid>
-            <ListView Margin="10" x:Name="cDataBinding">
-                <ListView.View>
-                    <GridView>
-                        <GridViewColumn Header="Contact Names" Width="120" DisplayMemberBinding="{Binding Name}">
-                        </GridViewColumn>
-                    </GridView>
-
-                </ListView.View>
-            </ListView>
-
-        </Grid>
+        <ListBox x:Name="cDataBinding" HorizontalAlignment="Stretch"
+                 SelectionMode="Extended" SelectionChanged="cDataBinding_SelectionChanged" MouseDoubleClick="cDataBinding_MouseDoubleClick">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Grid Margin="0,2">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="100"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Text="{Binding Name}"></TextBlock>
+                    </Grid>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
     </DockPanel>
 </Window>
