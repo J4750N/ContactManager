@@ -57,8 +57,11 @@ namespace ContactManager
 
         private void cDataBinding_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (cDataBinding.SelectedItem != null)
+            Contact selectedContact = (Contact)cDataBinding.SelectedItem;
+            if (cDataBinding != null)
             {
+                ContactDetails contactDetails = new ContactDetails(selectedContact);
+                contactDetails.Show();
                 this.Title = (cDataBinding.SelectedItem as Contact).Name;
             }
 
