@@ -20,9 +20,14 @@ namespace ContactManager
     /// </summary>
     public partial class MainWindow : Window
     {
+       
+
         public MainWindow()
         {
+          
             InitializeComponent();
+
+            btnAdd.Click += btnAdd_Click;
 
             List<Contact> contactList = new List<Contact>();
 
@@ -33,11 +38,18 @@ namespace ContactManager
             contactList.Add(new Contact() { Name = "André Leblanc", Phone = "438-281-6732", Email = "aleblanc@gmail.com" });
 
             cDataBinding.ItemsSource = contactList;
+
+            contactList.Sort(delegate(Contact x, Contact y) {
+                return x.Name.CompareTo(y.Name); 
+            });
+
+            
         }
 
-        private void btnAdd_Click(object sender, RoutedEventArgs e)
+        public void btnAdd_Click(object sender, RoutedEventArgs e)
         {
-
+            AddContact addContact = new AddContact();
+            addContact.ShowDialog();
         }
 
         private void btnView_Click(object sender, RoutedEventArgs e)
@@ -52,7 +64,7 @@ namespace ContactManager
 
         private void btnDelete_Click(object sender, RoutedEventArgs e)
         {
-
+           
         }
 
         private void cDataBinding_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -84,7 +96,7 @@ namespace ContactManager
 
         public override string ToString()
         {
-            string contact = "Name : " + Name + "\nPhone Number: " + Phone + "\n Email Address: " + Email ;
+            string contact = "Name : " + Name + "\nPhone Number: " + Phone + "\nEmail Address: " + Email ;
             return contact;
         }
     }
