@@ -19,9 +19,29 @@ namespace ContactManager
     /// </summary>
     public partial class AddContact : Window
     {
+        AddContact addContact;
         public AddContact()
         {
             InitializeComponent();
+
+            
+
+        }
+
+        private void btnCreateNewContact_Click(object sender, RoutedEventArgs e)
+        {
+            
+            List<Contact> contactList = new List<Contact>();
+            var name = NameTextBox.Text;
+            var phone = PhoneTextBox.Text;
+            var email = EmailTextBox.Text;
+
+            contactList.Add(new Contact() { Name = name, Phone = phone, Email = email });
+
+            
+            addContact.Close();
+
+            
         }
     }
 }

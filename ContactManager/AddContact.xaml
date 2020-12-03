@@ -27,17 +27,17 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="20"/>
         </Grid.RowDefinitions>
-        <Label Content="New Contact" FontSize="32"
-                   FontWeight="Bold" HorizontalAlignment="Right"
-                    Grid.Row="1" Grid.ColumnSpan="3" />
+        <Label Content="New Contact" FontSize="32" FontWeight="Bold" 
+               HorizontalAlignment="Right" Grid.ColumnSpan="3" Grid.Column="1" Grid.RowSpan="2" />
 
         <TextBlock Grid.Column="1" Grid.Row="2" Text="Name: "/>
         <TextBox x:Name="NameTextBox" Grid.Row="2" Grid.Column="2" Width="150"/>
         <TextBlock Grid.Column="1" Grid.Row="3" Text="Phone: "/>
         <TextBox x:Name="PhoneTextBox" Grid.Row="3" Grid.Column="2" Width="150" Grid.ColumnSpan="2"/>
         <TextBlock Grid.Column="1" Grid.Row="4" Text="Email: "/>
-        <TextBox x:Name="WmailTextBox" Grid.Row="4" Grid.Column="2" Width="150"/>
-
+        <TextBox x:Name="EmailTextBox" Grid.Row="4" Grid.Column="2" Width="150"/>
+        <Button x:Name="btnCreateNewContact" Click="btnCreateNewContact_Click"
+                Grid.Column="1" Grid.Row="5" Margin="10">Create Contact</Button>
 
     </Grid>
 </Window>

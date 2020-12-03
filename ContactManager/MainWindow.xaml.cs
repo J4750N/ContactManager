@@ -27,7 +27,7 @@ namespace ContactManager
           
             InitializeComponent();
 
-            btnAdd.Click += btnAdd_Click;
+            
 
             List<Contact> contactList = new List<Contact>();
 
@@ -50,6 +50,7 @@ namespace ContactManager
         {
             AddContact addContact = new AddContact();
             addContact.ShowDialog();
+            
         }
 
         private void btnView_Click(object sender, RoutedEventArgs e)

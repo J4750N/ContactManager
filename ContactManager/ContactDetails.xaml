@@ -8,7 +8,7 @@
         Title="ContactDetails" Height="450" Width="800">
     <Grid>
         <StackPanel Margin="10">
-            <Label Content="Contact Deatils Window" FontSize="32"
+            <Label Content="Contact Details Window" FontSize="32"
                    FontWeight="Bold" HorizontalAlignment="Center"
                    Margin="0,0,0,20"/>
             <TextBlock x:Name="NameTextBox" Width="300" FontSize="32" HorizontalAlignment="Center"/>
