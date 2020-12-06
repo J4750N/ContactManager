@@ -91,5 +91,29 @@ namespace ContactManager
 
             return "Contact updated";
         }
+        public static string DeleteContact(Person contact)
+        {
+
+
+            using (SqlConnection con = new SqlConnection(ConString))
+            {
+
+                string query = "DELETE From DbContactManager.dbo.Contacts ";
+                       query += $"where id = { contact.Id }";
+                con.Open();
+                SqlCommand cm = new SqlCommand(query, con);
+                try
+                {
+                    cm.ExecuteNonQuery();
+                }
+                catch (Exception ex)
+                {
+                    return ex.Message;
+                }
+
+            }
+
+            return "Contact deleted";
+        }
     }
 }

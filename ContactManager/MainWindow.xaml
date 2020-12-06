@@ -6,18 +6,18 @@
         xmlns:local="clr-namespace:ContactManager"
         xmlns:system="clr-namespace:System;assembly=mscorlib"
         mc:Ignorable="d"
-        Title="Contact Manger" Height="450" Width="350">
+        Title="Contact Manger" Height="404.847" Width="404.197">
     <DockPanel Margin="10">
-        <StackPanel DockPanel.Dock="Right" Margin="10, 0">
+        <StackPanel DockPanel.Dock="Right" Margin="10,0">
             <StackPanel.Resources>
                 <Style TargetType="Button">
                     <Setter Property="Margin" Value="0,0,0,5"></Setter>
                 </Style>
             </StackPanel.Resources>
-            <TextBlock FontWeight="Bold" Margin="0,0,0,10">Contact Manager</TextBlock>
-            <Button Name="btnAdd" Click="btnAdd_Click">Add New Contact</Button>
-            <Button Name="btnEdit" Click="btnEdit_Click">Edit Existing Contact</Button>
-            <Button Name="btnDelete" Click="btnDelete_Click">Delete Contact</Button>
+            <TextBlock FontWeight="Bold" Margin="0,0,0,10" Height="22"><Run Text="Contact Manager"/></TextBlock>
+            <Button x:Name="btnAdd" Click="btnAdd_Click" Background="#FF32AE26" Foreground="White" Content="Add New Contact"/>
+            <Button x:Name="btnEdit" Click="btnEdit_Click" Background="#FFFFA508" Foreground="White" Content="Edit Existing Contact"/>
+            <Button x:Name="btnDelete" Click="btnDelete_Click" Foreground="White" Background="Red" Content="Delete Contact"/>
         </StackPanel>
 
         <ListBox x:Name="cDataBinding" HorizontalAlignment="Stretch"

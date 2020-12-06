@@ -20,28 +20,13 @@ namespace ContactManager
     /// </summary>
     public partial class MainWindow : Window
     {
-       
+
 
         public MainWindow()
         {
-          
+
             InitializeComponent();
-
-            List<Person> contactList = Method.GetAllContacts();
-
-            //contactList.Add(new Contact() { Name = "Arianne Bonneau", Phone = "450-893-8976", Email = "abonneau@gmail.com" });
-            //contactList.Add(new Contact() { Name = "Anthony Toner", Phone = "514-782-3847", Email = "atoner@gmail.com" });
-            //contactList.Add(new Contact() { Name = "Jayson Taylor", Phone = "450-738-9090", Email = "jtaylor@gmail.com" });
-            //contactList.Add(new Contact() { Name = "Anne Drolet", Phone = "438-273-4546", Email = "adrolet@gmail.com" });
-            //contactList.Add(new Contact() { Name = "André Leblanc", Phone = "438-281-6732", Email = "aleblanc@gmail.com" });
-
-            cDataBinding.ItemsSource = contactList;
-
-            contactList.Sort(delegate(Person x, Person y) {
-                return x.FirstName.CompareTo(y.FirstName); 
-            });
-
-            
+            loadContacts();
         }
 
         public void btnAdd_Click(object sender, RoutedEventArgs e)
@@ -69,7 +54,21 @@ namespace ContactManager
 
         private void btnDelete_Click(object sender, RoutedEventArgs e)
         {
-           
+            Person selectedContact = (Person)cDataBinding.SelectedItem;
+            if (selectedContact !=null)
+            {
+                MessageBoxResult messageBoxResult = MessageBox.Show($"Are you sure you want to delete this contact : {selectedContact.FirstName}  {selectedContact.LastName}", "Delete Confirmation", System.Windows.MessageBoxButton.YesNo);
+                if (messageBoxResult == MessageBoxResult.Yes)
+                {
+                    var message = Method.DeleteContact(selectedContact);
+                    MessageBox.Show(message);
+                    loadContacts();
+                }
+            }
+            else
+            {
+                MessageBox.Show("You need to select a contact");
+            }
         }
 
         private void cDataBinding_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -85,6 +84,17 @@ namespace ContactManager
                 contactDetails.Show();
                 this.Title = (cDataBinding.SelectedItem as Person).Name;
             }
+
+        }
+
+        private void loadContacts()
+        {
+            List<Person> contactList = Method.GetAllContacts();
+            cDataBinding.ItemsSource = contactList;
+            contactList.Sort(delegate (Person x, Person y)
+            {
+                return x.FirstName.CompareTo(y.FirstName);
+            });
 
         }
     }
