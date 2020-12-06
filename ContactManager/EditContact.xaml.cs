@@ -17,27 +17,31 @@ namespace ContactManager
     /// <summary>
     /// Interaction logic for AddContact.xaml
     /// </summary>
-    public partial class AddContact : Window
+    public partial class EditContact : Window
     {
-        AddContact addContact;
-        public AddContact()
+        EditContact editContact;
+        public EditContact(Person contact)
         {
             InitializeComponent();
-
-            
+            IdContact.Content = contact.Id;
+            FirstNameTextBox.Text = contact.FirstName;
+            LastNameTextBox.Text = contact.LastName;
+            PhoneTextBox.Text = contact.Phone;
+            EmailTextBox.Text = contact.Email;
 
         }
 
-        private void btnCreateNewContact_Click(object sender, RoutedEventArgs e)
+        private void btnSaveContact_Click(object sender, RoutedEventArgs e)
         {
             
             Person contact = new Person();
+            contact.Id = (int)IdContact.Content;
             contact.FirstName = FirstNameTextBox.Text;
             contact.LastName = LastNameTextBox.Text;
             contact.Phone = PhoneTextBox.Text;
             contact.Email = EmailTextBox.Text;
 
-            var message = Method.AddContact(contact);
+            var message = Method.EditContact(contact);
             MessageBox.Show(message);
             //addContact.Close();
 

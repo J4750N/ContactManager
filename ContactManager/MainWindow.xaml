@@ -16,7 +16,6 @@
             </StackPanel.Resources>
             <TextBlock FontWeight="Bold" Margin="0,0,0,10">Contact Manager</TextBlock>
             <Button Name="btnAdd" Click="btnAdd_Click">Add New Contact</Button>
-            <Button Name="btnView" Click="btnView_Click">View Existing Contact</Button>
             <Button Name="btnEdit" Click="btnEdit_Click">Edit Existing Contact</Button>
             <Button Name="btnDelete" Click="btnDelete_Click">Delete Contact</Button>
         </StackPanel>

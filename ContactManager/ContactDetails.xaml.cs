@@ -19,8 +19,8 @@ namespace ContactManager
     /// </summary>
     public partial class ContactDetails : Window
     {
-        Contact contact;
-        public ContactDetails(Contact contact)
+        Person contact;
+        public ContactDetails(Person contact)
         {
             InitializeComponent();
             this.contact = contact;
