@@ -97,6 +97,17 @@ namespace ContactManager
             });
 
         }
+
+        private void SearchBar(object sender, TextChangedEventArgs e) 
+        {
+            Person searchedContact = (Person)cDataBinding.SelectedItem;
+            //if (e. == (char)13)
+            //{
+            //    DataView dv = dt.DefaultView;
+            //    dv.RowFilter = $"Column1 like '%{txtSearch.Text}%'";
+            //    dataGridView.DataSource = dv.ToTable();
+            //}
+        }
     }
 
 }
