@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace ContactManager
 {
-    public class Method
+    public sealed class Method
     {
         static string ConString = ConfigurationManager.ConnectionStrings["DbConnection"].ConnectionString;
 
