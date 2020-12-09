@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Microsoft.Win32;
 
 namespace ContactManager
 {
@@ -27,6 +29,7 @@ namespace ContactManager
 
             InitializeComponent();
             loadContacts();
+
         }
 
         public void btnAdd_Click(object sender, RoutedEventArgs e)
@@ -34,6 +37,7 @@ namespace ContactManager
             AddContact addContact = new AddContact();
             addContact.ShowDialog();
             this.Close();
+           
         }
 
         private void btnEdit_Click(object sender, RoutedEventArgs e)
@@ -55,7 +59,7 @@ namespace ContactManager
         private void btnDelete_Click(object sender, RoutedEventArgs e)
         {
             Person selectedContact = (Person)cDataBinding.SelectedItem;
-            if (selectedContact !=null)
+            if (selectedContact != null)
             {
                 MessageBoxResult messageBoxResult = MessageBox.Show($"Are you sure you want to delete this contact : {selectedContact.FirstName}  {selectedContact.LastName}", "Delete Confirmation", System.Windows.MessageBoxButton.YesNo);
                 if (messageBoxResult == MessageBoxResult.Yes)
@@ -98,7 +102,7 @@ namespace ContactManager
 
         }
 
-        private void SearchBar(object sender, TextChangedEventArgs e) 
+        private void SearchBar(object sender, TextChangedEventArgs e)
         {
             Person searchedContact = (Person)cDataBinding.SelectedItem;
             //if (e. == (char)13)
@@ -108,6 +112,48 @@ namespace ContactManager
             //    dataGridView.DataSource = dv.ToTable();
             //}
         }
-    }
 
+        private void btnImportContact_Click(object sender, RoutedEventArgs e)
+        {
+            string[] contactlines;
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+            if (openFileDialog.ShowDialog() == true)
+            {
+                contactlines = File.ReadAllLines(openFileDialog.FileName);
+                foreach (string line in contactlines)
+                {
+                    Person person = new Person();
+                    string[] splitline = line.Split(',');
+                    person.FirstName = splitline[0];
+                    person.LastName = splitline[1];
+                    person.Phone = splitline[2];
+                    person.Email = splitline[3];
+                    Method.AddContact(person);
+                }
+            }
+
+            loadContacts();
+
+        }
+
+        private void btnExportContact_Click(object sender, RoutedEventArgs e)
+        {
+            List<Person> person = Method.GetAllContacts();
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            saveFileDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+            if (saveFileDialog.ShowDialog() == true)
+            {
+                using (StreamWriter sw = File.CreateText(@"C:\Users\Jayson Taylor\Documents\ExportContact.csv"))
+                {
+                    foreach(Person p in person)
+                    {
+                        sw.WriteLine(p.ToString());
+                    }
+                }
+            }
+        }
+    }
 }
+
+
