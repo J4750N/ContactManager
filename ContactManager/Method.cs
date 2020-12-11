@@ -20,7 +20,7 @@ namespace ContactManager
             get { return instance; }
         }
 
-        public static List<Person> GetAllContacts()
+        public List<Person> GetAllContacts()
         {
             List<Person> listPerson = new List<Person>();
 
@@ -50,7 +50,7 @@ namespace ContactManager
 
             return listPerson;
         }
-        public static string AddContact(Person contact)
+        public string AddContact(Person contact)
         {
            
 
@@ -74,7 +74,7 @@ namespace ContactManager
 
             return "Contact added";
         }
-        public static string EditContact(Person contact)
+        public string EditContact(Person contact)
         {
 
 
@@ -99,7 +99,7 @@ namespace ContactManager
 
             return "Contact updated";
         }
-        public static string DeleteContact(Person contact)
+        public string DeleteContact(Person contact)
         {
 
 

@@ -28,7 +28,6 @@ namespace ContactManager
         {
 
             InitializeComponent();
-            DataContext = new PhoneType();
             loadContacts();
             
 
@@ -60,13 +59,14 @@ namespace ContactManager
 
         private void btnDelete_Click(object sender, RoutedEventArgs e)
         {
+            var instance = Method.Instance;
             Person selectedContact = (Person)cDataBinding.SelectedItem;
             if (selectedContact != null)
             {
                 MessageBoxResult messageBoxResult = MessageBox.Show($"Are you sure you want to delete this contact : {selectedContact.FirstName}  {selectedContact.LastName}", "Delete Confirmation", System.Windows.MessageBoxButton.YesNo);
                 if (messageBoxResult == MessageBoxResult.Yes)
                 {
-                    var message = Method.DeleteContact(selectedContact);
+                    string message = instance.DeleteContact(selectedContact);
                     MessageBox.Show(message);
                     loadContacts();
                 }
@@ -95,7 +95,8 @@ namespace ContactManager
 
         private void loadContacts()
         {
-            List<Person> contactList = Method.GetAllContacts();
+            var instance1 = Method.Instance;
+            List<Person> contactList = instance1.GetAllContacts();
             cDataBinding.ItemsSource = contactList;
             contactList.Sort(delegate (Person x, Person y)
             {
@@ -107,6 +108,7 @@ namespace ContactManager
         private void btnImportContact_Click(object sender, RoutedEventArgs e)
         {
             string[] contactlines;
+            var instace2 = Method.Instance;
             OpenFileDialog openFileDialog = new OpenFileDialog();
             openFileDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
             if (openFileDialog.ShowDialog() == true)
@@ -120,7 +122,7 @@ namespace ContactManager
                     person.LastName = splitline[1];
                     person.Phone = splitline[2];
                     person.Email = splitline[3];
-                    Method.AddContact(person);
+                    instace2.AddContact(person);
                 }
             }
 
@@ -130,7 +132,8 @@ namespace ContactManager
 
         private void btnExportContact_Click(object sender, RoutedEventArgs e)
         {
-            List<Person> person = Method.GetAllContacts();
+            var instance3 = Method.Instance;
+            List<Person> person = instance3.GetAllContacts();
             SaveFileDialog saveFileDialog = new SaveFileDialog();
             saveFileDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
             if (saveFileDialog.ShowDialog() == true)
