@@ -19,7 +19,6 @@ namespace ContactManager
     /// </summary>
     public partial class EditContact : Window
     {
-        EditContact editContact;
         public EditContact(Person contact)
         {
             InitializeComponent();
@@ -41,7 +40,8 @@ namespace ContactManager
             contact.Phone = PhoneTextBox.Text;
             contact.Email = EmailTextBox.Text;
 
-            var message = Method.EditContact(contact);
+            var insanceE = Method.Instance;
+            var message = insanceE.EditContact(contact);
             MessageBox.Show(message);
             //addContact.Close();
 
