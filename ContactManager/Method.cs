@@ -11,6 +11,14 @@ namespace ContactManager
     public sealed class Method
     {
         static string ConString = ConfigurationManager.ConnectionStrings["DbConnection"].ConnectionString;
+        Method() { }
+
+        static readonly Method instance = new Method();
+       
+        public static Method Instance
+        {
+            get { return instance; }
+        }
 
         public static List<Person> GetAllContacts()
         {
